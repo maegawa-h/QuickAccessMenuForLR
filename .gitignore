@@ -1,0 +1,45 @@
+# Visual Studio
+.vs/
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+TestResults/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Package dependencies
+packages/
+node_modules/
+
+# Logs
+*.log
+
+# Resharper
+*.DotSettings.user
+
+# Rider
+.idea/
+
+# Generated files
+*.g.cs
+*.g.i.cs
+
+# Database files
+*.mdf
+*.ldf
+
+# Secrets and keys
+secrets.json
+
+# Temporary files
+~$*

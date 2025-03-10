@@ -1,0 +1,88 @@
+﻿<Window x:Class="QuickAccessMenu.Extensions.Views.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MenuWindow" 
+        WindowStyle="None" 
+        AllowsTransparency="True" 
+        Background="#333333" 
+        Topmost="True"
+        ShowInTaskbar="False">
+
+    <Window.Resources>
+        <!-- ボタンのスタイル -->
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="#0078D7"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <!-- 背景 -->
+                            <Border x:Name="OuterBorder"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="10">
+                                <Border.Effect>
+                                    <!-- 軽いドロップシャドウ -->
+                                    <DropShadowEffect ShadowDepth="2" BlurRadius="8" Opacity="0.3"/>
+                                </Border.Effect>
+                            </Border>
+                            <!-- ボタンの内容 -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <!-- マウスオーバーとクリック時のエフェクト -->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="OuterBorder" Property="Background" Value="#555555"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="OuterBorder" Property="Background" Value="#333333"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <ItemsControl Grid.Column="0" ItemsSource="{Binding LimitedIssueConfigs}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Path=DisplayName}" 
+                        Command="{Binding DataContext.AddIssueCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                        CommandParameter="{Binding ID}"
+                        Background="{Binding Path=BackgroundBrush}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+            <Button Command="{Binding Path=OpenSettingsCommand}" Height="24" Width="24">
+                <Image Source="pack://application:,,,/QuickAccessMenu;component/Resources/Images/open_settings.png" Width="18" Height="18"/>
+            </Button>
+            <Button Command="{Binding Path=LoadSettingsCommand}" Height="24" Width="24">
+                <Image Source="pack://application:,,,/QuickAccessMenu;component/Resources/Images/load_settings.png" Width="18" Height="18"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

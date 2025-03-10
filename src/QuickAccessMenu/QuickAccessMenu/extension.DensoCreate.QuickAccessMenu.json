@@ -1,0 +1,65 @@
+{
+  "IsActive": true,
+  "Buttons": [
+    // 指摘追加ボタンの設定です。
+    // ボタンは最大5つまで追加できます。
+    // 
+    // ボタンを追加する場合は、以下の形式で追加してください。
+    // ID: ボタンのIDです。ボタンのIDは一意である必要があります。
+    // DisplayName: ボタンに表示される名前です。
+    // Color: ボタンの色です。カラーコードを指定してください。
+    // 
+    // Properties: ボタンのプロパティです。
+    // Type: 指摘の種類です。Bug, GoodPoint, Suggestionのいずれかを指定してください。
+    // Importance: 指摘の重要度です。High, Middle, Lowのいずれかを指定してください。
+    // Priority: 指摘の優先度です。High, Middle, Lowのいずれかを指定してください。
+    // Category: 指摘のカテゴリです。指摘を追加する際にカテゴリを指定することができます。
+    // ReportedBy: 指摘の報告者です。指摘を追加する際に報告者を指定することができます。
+    // AssignedTo: 指摘の修正者です。指摘を追加する際に修正者を指定することができます。
+    // ConfirmedBy: 指摘の確認者です。指摘を追加する際に確認者を指定することができます。
+    // DueDate: 指摘の期限です。Today: 当日, Day: 次の日, Week: 次週, Month: 次の月, yyyy/MM/dd: 指定の日付 のいずれかで指定してください。
+    {
+      "ID": "HighDefect",
+      "DisplayName": "不具合(高)",
+      "Color": "#00BF3F",
+      "Properties": {
+        "Type": "Bug",
+        "Importance": "High"
+      }
+    },
+    {
+      "ID": "MiddleDefect",
+      "DisplayName": "不具合(中)",
+      "Color": "#00BF3F",
+      "Properties": {
+        "Type": "Bug",
+        "Importance": "Middle"
+      }
+    },
+    {
+      "ID": "LowDefect",
+      "DisplayName": "不具合(低)",
+      "Color": "#00BF3F",
+      "Properties": {
+        "Type": "Bug",
+        "Importance": "Low"
+      }
+    },
+    {
+      "ID": "GoodPoint",
+      "DisplayName": "グッドポイント",
+      "Color": "#2EA7E0",
+      "Properties": {
+        "Type": "GoodPoint"
+      }
+    },
+    {
+      "ID": "Issue",
+      "DisplayName": "指摘",
+      "Color": "#FFBC00",
+      "Properties": {
+        "Type": "Suggestion"
+      }
+    }
+  ]
+}

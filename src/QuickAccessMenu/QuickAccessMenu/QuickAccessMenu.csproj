@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <PackageId>QuickAccessMenu</PackageId>
+    <Version>1.0.0</Version>
+    <PackageProjectUrl>https://www.your-web-here.com/</PackageProjectUrl>
+    <Authors>Hiroshi Maegawa</Authors>
+    <Company></Company>
+    <Product>QuickAccessMenu</Product>
+    <Description>指摘登録を素早く行うためのメニューを表示できるようになります。</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <AssemblyName>QuickAccessMenu</AssemblyName>
+    <RootNamespace>QuickAccessMenu</RootNamespace>
+    <Copyright>$(Authors)</Copyright>
+    <RepositoryUrl></RepositoryUrl>
+    <Title>[前川]クイックアクセスメニュー</Title>
+    <PackageOutputPath>.\</PackageOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\load_settings.png" />
+    <None Remove="Resources\Images\open_settings.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\load_settings.png" />
+    <Resource Include="Resources\Images\open_settings.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <PackageReference Include="LightningReview.ExtensionFramework" Version="*" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="System.Text.Json" Version="9.0.2" />
+    </ItemGroup>
+    <ItemGroup>
+    <Folder Include="Properties\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+    <ItemGroup>
+      <None Update="extension.DensoCreate.QuickAccessMenu.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="QuickAccessMenu.nuspec">
+        <Generator>SettingsSingleFileGenerator</Generator>
+        <LastGenOutput>QuickAccessMenu.Designer.cs</LastGenOutput>
+      </None>
+    </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="set DESTINATION_FOLDER=%25USERPROFILE%25\AppData\Local\DENSO CREATE\Lightning Review\extensions\$(ProjectName)&#xD;&#xA;rd /s /q &quot;%25DESTINATION_FOLDER%25&quot;&#xD;&#xA;&#xA;xcopy /S /I /Q /Y &quot;$(TargetDir)*&quot; &quot;%25DESTINATION_FOLDER%25&quot;" />
+  </Target>
+
+</Project>
